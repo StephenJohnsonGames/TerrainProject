@@ -1,0 +1,7 @@
+Terrain Programming README
+
+- This project was made to demonstrate knowledge of graphics pipeline by creating terrain on the GPU.
+
+- Added complexity over previous OpenGL Project by introducing tessellation and geometry shader stages and using compute shaders for Perlin Noise.
+
+- Required libraries and solution included for ease (req Git LFS & Visual Studio). TODO - Convert to CMake project. 
