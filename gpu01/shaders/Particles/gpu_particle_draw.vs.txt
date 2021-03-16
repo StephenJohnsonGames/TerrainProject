@@ -1,0 +1,38 @@
+#version 460
+
+uniform mat4 viewMatrix;
+uniform float near;
+uniform float far;
+uniform mat4 translate;
+
+layout (location=0) in vec3 pos;
+layout (location=1) in vec3 velocity;
+layout (location=2) in float age;
+layout (location=3) in uint isaGenerator;
+layout (location=5) in vec2 texture;
+
+out Particle {
+
+	vec4 eyePos;
+	vec3 velocity;
+	float age;
+	uint isaGenerator;
+	float linearDepth;
+	vec2 texCoords;
+
+} outputVertex;
+
+
+void main(void) {
+	
+	vec4 worldPos = translate * vec4(pos, 1.0f);
+	vec4 eyePos = viewMatrix * worldPos; //vec4(pos, 1.0f);
+
+	outputVertex.texCoords = texture;
+	outputVertex.eyePos = eyePos;
+	outputVertex.velocity = velocity;
+	outputVertex.age = age;
+	outputVertex.isaGenerator =  isaGenerator;
+	outputVertex.linearDepth = (-eyePos.z - near) / (far - near);
+}
+

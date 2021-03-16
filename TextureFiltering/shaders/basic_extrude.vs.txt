@@ -1,0 +1,17 @@
+#version 460
+
+layout (location=0) in vec4 vertexPos; // Assume world coords
+layout (location=1) in vec4 vertexColour;
+
+out GSPacket {
+
+	vec4 colour;
+
+} outputVertex;
+
+
+void main(void) {
+
+	outputVertex.colour = vertexColour;
+	gl_Position = vertexPos; // pass-through to GS
+}

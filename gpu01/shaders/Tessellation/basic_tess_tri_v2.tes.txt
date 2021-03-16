@@ -1,0 +1,48 @@
+#version 460
+
+
+// We'll do coordinate transforms for each tessellated vertex here
+uniform mat4 mvpMatrix;
+
+
+layout (triangles, fractional_even_spacing, ccw) in;
+
+in ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} inControlPoints[]; // Array of control points from Control Shader
+
+out TessVertex {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} outputVertex; // Singular point passed as part of triangle primitives to GS (if present) or rasteriser
+
+
+void main() {
+
+  // For triangle - get barycentric coords
+  float a = gl_TessCoord.x;
+  float b = gl_TessCoord.y;
+  float c = gl_TessCoord.z;
+
+  // Interpolate colour
+  outputVertex.colour = inControlPoints[0].colour * a + 
+                        inControlPoints[1].colour * b +
+                        inControlPoints[2].colour * c;                         
+  
+  // Interpolate texture coordiante
+  outputVertex.texCoord = inControlPoints[0].texCoord * a +
+                          inControlPoints[1].texCoord * b +
+                          inControlPoints[2].texCoord * c;
+  
+  // Interpolate position in patch given domain coord (a, b, c) and control points from the control shader
+  vec3 pos = gl_in[0].gl_Position.xyz * a +
+             gl_in[1].gl_Position.xyz * b + 
+             gl_in[2].gl_Position.xyz * c;
+             
+  gl_Position = mvpMatrix * vec4(pos, 1.0f);
+}

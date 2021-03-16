@@ -1,0 +1,25 @@
+#version 460
+
+// Wireframe solution for mesh rendering
+
+
+#version 460
+
+
+layout (location = 0) in vec4 vertexPos;
+layout (location = 2) in vec3 vertexNormal;
+
+
+out VSOutput {
+
+  vec3 normal;
+  
+} outputVertex;
+
+
+void main(void) {
+
+  outputVertex.normal = vertexNormal;
+  
+  gl_Position = vertexPos;
+}

@@ -1,0 +1,30 @@
+#version 460
+
+uniform sampler2D texture;
+
+in vec3 texCoord;
+in vec3 normal;
+in vec3 pos;
+
+layout (location=0) out vec4 fragColour;
+
+void main(void) {
+
+    vec3 N = normalize(normal);
+
+    vec3 L = vec3(1.5, 0.0, 0.0); // Light source position
+    vec4 Lcolour = vec4(0.0, 1.0, 0.0, 1.0);
+	vec3 Lk = vec3(1.0f, 0.1, 0.0); // constant (x), linear (y) and quadratic (z) attenuation parameters in single vector
+
+	vec3 D = L - pos;
+	float lengthD = length(D);
+	vec3 D_ = normalize(D);
+
+	// Attenuation based on distance value lengthD
+	float a = 1.0 / (Lk.x + Lk.y * lengthD + Lk.z * lengthD * lengthD);
+
+	// Lambertian
+	float lambertian = clamp(dot(D_, N), 0.0, 1.0);
+
+	fragColour = texture2D(texture, texCoord.xy);// * Lcolour * lambertian * a;
+}

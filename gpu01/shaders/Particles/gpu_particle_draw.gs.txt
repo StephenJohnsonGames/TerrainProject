@@ -1,0 +1,63 @@
+#version 460
+
+uniform mat4 projMatrix;
+uniform float maxAge;
+
+layout (points) in;
+layout (triangle_strip, max_vertices = 4) out;
+
+in Particle {
+
+	vec4 eyePos;
+	vec3 velocity;
+	float age;
+	uint isaGenerator;
+	float linearDepth;
+	vec2 texCoords;
+
+} inputVertex[];
+
+
+out GSOutput {
+
+  vec4 colour;
+  float linearDepth;
+  vec2 texCoords;
+
+} outputVertex;
+
+
+void main(void) {
+
+	// Determine size and alpha from age
+	float size = inputVertex[0].age * 0.03f;
+	float alpha = 1.0f - inputVertex[0].age / maxAge;
+	
+	outputVertex.colour = vec4(1.0f, 1.0f, 1.0f, alpha);
+	outputVertex.linearDepth = inputVertex[0].linearDepth;
+
+	//setup tex co-ords
+
+	vec4 centre = inputVertex[0].eyePos;
+
+	vec4 p0 = vec4(centre.x - size, centre.y - size, centre.z, 1.0f);
+	vec4 p2 = vec4(centre.x - size, centre.y + size, centre.z, 1.0f);
+	vec4 p1 = vec4(centre.x + size, centre.y - size, centre.z, 1.0f);
+	vec4 p3 = vec4(centre.x + size, centre.y + size, centre.z, 1.0f);
+	
+	outputVertex.texCoords = vec2(0.0f, 0.0f);
+	gl_Position = projMatrix * p0;
+	EmitVertex();
+
+	outputVertex.texCoords = vec2(1.0f, 0.0f);
+	gl_Position = projMatrix * p1;
+	EmitVertex();
+
+	outputVertex.texCoords = vec2(0.0f, 1.0f);
+	gl_Position = projMatrix * p2;
+	EmitVertex();
+
+	outputVertex.texCoords = vec2(1.0f, 1.0f);
+	gl_Position = projMatrix * p3;
+	EmitVertex();
+}

@@ -1,0 +1,53 @@
+#version 460
+
+
+// We'll do coordinate transforms for each tessellated vertex here
+uniform mat4 mvpMatrix;
+
+
+layout (isolines, equal_spacing) in;
+
+
+in ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} inControlPoints[]; // Array of control points from Control Shader
+
+out TessVertex {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} outputVertex; // Singular point passed as part of triangle primitives to GS (if present) or rasteriser
+
+
+void main() {
+
+  // For isoline - get domain coord along curve
+  float t = gl_TessCoord.x;
+
+  // Derive Catmul-Rom coefficients
+  float cr1 = -0.5f*t + t*t - 0.5f*t*t*t;
+  float cr2 = 1.0f - 2.5f*t*t + 1.5f*t*t*t;
+  float cr3 = 0.5f*t + 2.0f*t*t - 1.5f*t*t*t;
+  float cr4 = -0.5f*t*t + 0.5f*t*t*t;
+
+  // Interpolate colour
+  outputVertex.colour = inControlPoints[0].colour * cr1 + 
+						inControlPoints[1].colour * cr2 +
+						inControlPoints[2].colour * cr3 +
+						inControlPoints[3].colour * cr4; 
+  
+  // Interpolate texture coords
+  outputVertex.texCoord = vec2(t, 0.0f); 
+
+  // Interpolate position in patch given domain coord (a, b, c) and control points from the control shader
+  vec3 pos = gl_in[0].gl_Position.xyz * cr1 +
+			 gl_in[1].gl_Position.xyz * cr2 +
+			 gl_in[2].gl_Position.xyz * cr3 +
+			 gl_in[3].gl_Position.xyz * cr4;
+  
+  gl_Position = mvpMatrix * vec4(pos, 1.0f);
+}

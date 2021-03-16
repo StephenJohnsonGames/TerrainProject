@@ -1,0 +1,39 @@
+#version 460
+
+uniform mat4 mvpMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 projMatrix;
+uniform mat4 translate;
+uniform mat4 rotate;
+uniform mat4 scale;
+uniform float near;
+uniform float far;
+
+layout (location=0) in vec4 vertexPos;
+layout (location=3) in vec2 vertexTexCoord;
+
+
+out SimplePacket {
+
+	vec2 texCoord;
+	float linearDepth;
+
+} outputVertex;
+
+
+void main(void) {
+
+	outputVertex.texCoord = vertexTexCoord;
+	
+	mat4 TSR = translate * scale * rotate;
+
+	vec4 worldPos = TSR * vertexPos;
+	vec4 eyePos = viewMatrix * worldPos;
+
+	vec4 clipPos = projMatrix * eyePos;
+
+	outputVertex.linearDepth = (-eyePos.z - near) / (far - near);
+
+	gl_Position = clipPos;
+
+}

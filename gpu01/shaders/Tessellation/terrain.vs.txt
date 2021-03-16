@@ -1,0 +1,34 @@
+#version 460
+
+//terrain with patch information
+
+uniform mat4 viewMatrix;
+//uniform mat4 projMatrix;
+uniform float near;
+uniform float far;
+
+layout (location = 0) in vec4 pos;
+layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 textureCoord;
+
+out ControlPoint {
+
+	vec4 colour;
+	float linearDepth;
+	vec3 normals;
+	vec2 texCoord;
+	vec4 worldPos;
+
+} outputControlPoint;
+
+
+void main(void){
+
+	outputControlPoint.worldPos = pos;
+	outputControlPoint.texCoord = textureCoord;
+	vec4 eyePos = viewMatrix * pos;
+	outputControlPoint.linearDepth = (-eyePos.z - near) / (far - near);
+	outputControlPoint.normals = normal;
+	gl_Position = eyePos;
+	
+}

@@ -1,0 +1,30 @@
+#version 460
+
+uniform mat4 viewMatrix;
+uniform float near;
+uniform float far;
+
+layout (location=0) in vec3 pos;
+layout (location=1) in vec3 velocity;
+layout (location=2) in float age;
+
+out Particle {
+
+	vec4 eyePos;
+	vec3 velocity;
+	float age;
+	float linearDepth;
+
+} outputVertex;
+
+
+void main(void) {
+
+	vec4 eyePos = viewMatrix * vec4(pos, 1.0f);
+
+	outputVertex.eyePos = eyePos;
+	outputVertex.velocity = velocity;
+	outputVertex.age = age;
+	outputVertex.linearDepth = (-eyePos.z - near) / (far - near);
+}
+

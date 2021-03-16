@@ -1,0 +1,32 @@
+#version 460
+
+uniform mat4 viewMatrix;
+uniform mat4 projMatrix;
+uniform float near;
+uniform float far;
+
+layout (location = 0) in vec4 pos;
+layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 textureCoord;
+
+out VSOutput{
+
+	vec4 colour;
+	float linearDepth;
+	vec3 normals;
+	vec2 texture;
+	vec4 worldPos;
+
+} outputVertex;
+
+
+void main(void){
+
+	outputVertex.worldPos = pos;
+	outputVertex.texture = textureCoord;
+	vec4 eyePos = viewMatrix * pos;
+	outputVertex.linearDepth = (-eyePos.z - near) / (far - near);
+	outputVertex.normals = normal;
+	gl_Position = projMatrix * eyePos;
+
+}

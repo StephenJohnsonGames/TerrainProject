@@ -1,0 +1,24 @@
+#version 460
+
+layout (location = 0) in vec4 pos;
+layout (location = 1) in vec4 colour;
+layout (location = 5) in float height;
+
+out VSOutput{
+
+	vec4 colour;
+	float height;
+
+
+} outputVertex;
+
+void main(void){
+
+	outputVertex.colour = colour;
+	outputVertex.height = height;
+	float y = 20.0f;
+	vec4 position = vec4(pos.x, y, pos.z, 1.0f);
+
+	gl_Position = position;
+
+}

@@ -1,0 +1,26 @@
+#version 460
+
+layout (location=0) in vec3 pos;
+layout (location=1) in vec3 velocity;
+layout (location=2) in float age;
+layout (location=3) in int isaGenerator;
+layout (location=5) in vec4 foobar;
+
+out Particle {
+
+	vec3 pos;
+	vec3 velocity;
+	float age;
+	int isaGenerator;
+
+} outputVertex;
+
+
+void main(void) {
+
+	outputVertex.pos = pos;
+	outputVertex.velocity = velocity;
+	outputVertex.age = age;
+	outputVertex.isaGenerator = isaGenerator;
+}
+

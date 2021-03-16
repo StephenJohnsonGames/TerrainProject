@@ -1,0 +1,111 @@
+#version 460
+#extension GL_ARB_bindless_texture : require
+//uniform sampler2D grassTexture;
+
+//terrain with patch information
+
+//layout(std140, binding = 0) uniform TerrainTextureBlock {
+//
+//	sampler2D grassTexture;
+//	sampler2D rockTexture;
+//	sampler2D snowTexture;
+//	sampler2D darkRockTexture;
+//
+//	vec2 grassScale;
+//	vec2 rockScale;
+//	vec2 snowScale;
+//	vec2 darkRockScale;
+//
+//} textureModel;
+
+struct TerrainTexture {
+
+	sampler2D	texture;
+	vec2		scale;
+};
+
+// ** uniform structure
+layout (std140, binding = 0) uniform TextureModelBlock {
+
+	TerrainTexture grass;
+	TerrainTexture rock;
+	TerrainTexture snow;
+
+} textureModel;
+
+
+layout(location = 0) out vec4 fragColour;
+
+in TessVertex {
+
+	vec4 colour;
+	float linearDepth;
+	vec3 normals;
+	vec2 texCoord;
+	vec4 worldPos;
+
+} inputFragment;
+
+void main(void){
+
+	//normals for per fragment lighting
+	vec3 N = normalize(inputFragment.normals);
+
+	//light coming straight from the x axis
+	float lambertian = dot(N, vec3(1.0f, 0.0f, 0.0f));
+
+	//float d1 = gl_FragCoord.z;
+	//fragColour = vec4(d1, d1, d1, 1.0f);
+
+	//vec4 grassColour = texture(textureModel.grassTexture, inputFragment.texCoord * textureModel.grassScale);
+	//vec4 rockColour = texture(textureModel.rockTexture, inputFragment.texCoord * textureModel.rockScale);
+	//vec4 snowColour = texture(textureModel.snowTexture, inputFragment.texCoord * textureModel.snowScale);
+	//vec4 darkRockColour = texture(textureModel.darkRockTexture, inputFragment.texCoord * textureModel.darkRockScale);
+
+	//hard coded
+	//float grassFactor = 0.5f;
+	//float rockFactor = 0.7f;
+	//float snowFactor = 0.3f;
+
+	float grassFactor = (N.y * N.y) * (1.0f - smoothstep(-0.4, -0.1f, inputFragment.worldPos.y));
+	float rockFactor = 1.0f - (N.y * N.y);
+	float snowFactor = (N.y * N.y) * smoothstep(0.2f, 0.3f, inputFragment.worldPos.y);
+	//float darkRockFactor = (N.y * N.y) * smoothstep(0.0f, 0.2f, inputFragment.worldPos.y);
+
+	// ** Normalise blending coefficients to sum to 1.0 (avoid saturation)
+	float cNorm = 1.0f / (grassFactor + rockFactor + snowFactor);
+	grassFactor *= cNorm;
+	rockFactor *= cNorm;
+	snowFactor *= cNorm;
+
+	vec3 textureColour = texture(textureModel.grass.texture, inputFragment.texCoord * textureModel.grass.scale).rgb * grassFactor + 
+						 texture(textureModel.rock.texture, inputFragment.texCoord * textureModel.rock.scale).rgb * rockFactor + 
+						 texture(textureModel.snow.texture, inputFragment.texCoord * textureModel.snow.scale).rgb * snowFactor;
+
+	//grassFactor /= (grassFactor + rockFactor + snowFactor);
+	//rockFactor /= (grassFactor + rockFactor + snowFactor);
+	//snowFactor /= (grassFactor + rockFactor + snowFactor);
+	//darkRockFactor /= (grassFactor + rockFactor + snowFactor);
+	//
+	//vec3 grassTex = grassColour.rgb * grassFactor;
+	//vec3 rockTex = rockColour.rgb * rockFactor;
+	//vec3 darkRockTex = darkRockColour.rgb * darkRockFactor;
+	//vec3 snowTex = snowColour.rgb * snowFactor;
+
+	//vec3 finalColour = grassTex + rockTex + darkRockTex + snowTex;
+
+	//fragColour = vec4(N.y, N.y, N.y, 1.0f);
+	//fragColour = vec4(lambertian, lambertian, lambertian, 1.0f);
+	//fragColour = textureColour;
+
+	//final texture colour
+	fragColour = vec4(textureColour.r * lambertian, textureColour.g * lambertian, textureColour.b * lambertian, 1.0f);
+
+	//testing tess
+	//fragColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+
+	gl_FragDepth = inputFragment.linearDepth;
+
+
+
+}

@@ -1,0 +1,48 @@
+#version 460
+
+uniform mat4 mvpMatrix;
+
+layout (points) in;
+layout (triangle_strip, max_vertices = 3) out;
+
+
+
+//notes for point extrude
+
+//layout (triangles) in;
+//layout (line_strip, max_vertices = 3) out;
+
+//in GSOutput{
+
+//	vec4 colour;
+
+//} inputVertex[];
+
+
+
+//input
+
+in VSOutput{
+
+	vec4 colour;
+
+} inputVertex[];
+
+//output
+
+out GSOutput {
+
+	vec4 colour;
+
+} outputVertex;
+
+
+void main(void){
+
+	gl_Position = mvpMatrix * gl_in[0].gl_Position;
+
+	EmitVertex();
+
+	//EndPrimitive();
+
+}

@@ -1,0 +1,23 @@
+#version 460
+
+uniform sampler2D texture;
+
+in GSOutput {
+
+  vec4 colour;
+  float linearDepth;
+  vec2 texCoords;
+
+} inputFragment;
+
+
+layout (location=0) out vec4 fragColour;
+
+
+void main(void) {
+
+  
+  //fragColour = inputFragment.colour;
+  fragColour = texture2D(texture, inputFragment.texCoords.xy);
+  gl_FragDepth = inputFragment.linearDepth;
+}

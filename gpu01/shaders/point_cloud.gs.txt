@@ -1,0 +1,47 @@
+#version 460
+
+uniform mat4 mvpMatrix;
+
+layout (triangles) in;
+layout (line_strip, max_vertices = 4) out;
+
+//input
+
+in VSOutput{
+
+	vec4 colour;
+
+} inputVertex[];
+
+//output
+
+out GSOutput {
+
+	vec4 colour;
+
+} outputVertex;
+
+
+void main(void){
+
+	gl_Position = mvpMatrix * gl_in[0].gl_Position;
+	//outputVertex.colour = inputVertex[0].colour;
+	EmitVertex();
+	//EndPrimitive();
+
+	gl_Position = mvpMatrix * gl_in[1].gl_Position;
+	//outputVertex.colour = inputVertex[1].colour;
+	EmitVertex();
+	//EndPrimitive();
+
+	gl_Position = mvpMatrix * gl_in[2].gl_Position;
+	//outputVertex.colour = inputVertex[2].colour;
+	EmitVertex();
+
+	gl_Position = mvpMatrix * gl_in[0].gl_Position;
+	//outputVertex.colour = inputVertex[0].colour;
+	EmitVertex();
+
+	EndPrimitive();
+
+}

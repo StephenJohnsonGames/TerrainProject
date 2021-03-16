@@ -1,0 +1,28 @@
+#version 460
+
+uniform sampler2D texture;
+
+in VSPacket {
+
+	vec4 posW;
+	vec3 normalW;
+	float linearDepth;
+	vec2 textureCoord;
+
+} inputFragment;
+
+layout (location=0) out vec4 fragColour;
+
+void main(void) {
+
+    vec3 N = normalize(inputFragment.normalW);
+
+    vec3 L = normalize(vec3(1.0, 0.0, 0.0)); // Light source direction
+    vec4 Lcolour = vec4(1.0, 1.0, 1.0, 1.0);
+	
+	// Lambertian
+	float lambertian = clamp(dot(L, N), 0.0, 1.0);
+
+	fragColour = texture2D(texture, inputFragment.textureCoord) * Lcolour * lambertian;
+	gl_FragDepth = inputFragment.linearDepth;
+}

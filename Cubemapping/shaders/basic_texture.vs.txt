@@ -1,0 +1,20 @@
+#version 460
+
+uniform mat4 mvpMatrix;
+
+layout (location=0) in vec4 vertexPos;
+layout (location=3) in vec2 vertexTexCoord;
+
+
+out SimplePacket {
+
+	vec2 texCoord;
+
+} outputVertex;
+
+
+void main(void) {
+
+	outputVertex.texCoord = vertexTexCoord;
+	gl_Position = mvpMatrix * vertexPos;
+}

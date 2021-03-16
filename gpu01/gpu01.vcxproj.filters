@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{7a489dfc-9e10-40c3-a3e8-ac6d6ae79cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{58e6d23a-ed90-468f-b95e-08a65819a6fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Foundation">
+      <UniqueIdentifier>{5f0bbbce-f6ac-4f25-99ab-6ba49ea3e659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Foundation\Camera Model">
+      <UniqueIdentifier>{76e663e5-d3b4-4db0-9da9-e204fe7937a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShaderFactory">
+      <UniqueIdentifier>{305daf07-5790-4f88-a211-037faf940824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\Tessellation">
+      <UniqueIdentifier>{8e7456a9-00de-42e6-af90-af1e4f982723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tessellation">
+      <UniqueIdentifier>{d73257e7-2ccd-4362-93ec-2d223881607f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\Particles">
+      <UniqueIdentifier>{68df211b-4efe-4a60-aac7-30aca9d9627b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Particles">
+      <UniqueIdentifier>{8656383a-85df-4f13-a383-10944c3c9519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\Instancing">
+      <UniqueIdentifier>{4a9b20fa-9318-4c2c-8379-cff21f4a9162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\ProceduralTexture">
+      <UniqueIdentifier>{abf439bd-0168-4339-b649-9e74495e4cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ProceduralTexture">
+      <UniqueIdentifier>{434237ce-29c5-43d4-bfe5-8a1301a9122c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\Skybox">
+      <UniqueIdentifier>{685c6a78-6886-4ab0-b86f-474b1da9420e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gpu01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIScene.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIMesh.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PointExtrudeModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrincipleAxesModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexturedQuadModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader_setup.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture_loader.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArcballCamera.cpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ViewFrustum.cpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUClock.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GrassField.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BasicTerrain.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PerlinNoise.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StringUtility.cpp">
+      <Filter>Source Files\ShaderFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BasicTessTriangle.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\CatmulRomSpline.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\BSplineSurface.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\BezierSurface.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\BezierCurveTess.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\BasicTessTri.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\BasicTessQuad.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\BasicTessIsoline.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tessellation\PatchTerrain.cpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystemCPU1.cpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystemCPU2.cpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystemGPU.cpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProceduralTexture.cpp">
+      <Filter>Source Files\ProceduralTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIBaseMesh.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GrassPatches.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Skybox.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIScene.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIMesh.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PointExtrudeModel.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrincipleAxesModel.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexturedQuadModel.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shader_setup.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\texture_loader.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ArcballCamera.hpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ViewFrustum.hpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUClock.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GrassField.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BasicTerrain.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NoiseInterface.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PerlinNoise.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GLProgramObject.hpp">
+      <Filter>Source Files\ShaderFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GLShaderFactory.hpp">
+      <Filter>Source Files\ShaderFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GLShaderStage.hpp">
+      <Filter>Source Files\ShaderFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StringUtility.hpp">
+      <Filter>Source Files\ShaderFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BasicTessTriangle.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\CatmulRomSpline.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\BSplineSurface.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\BezierSurface.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\BezierCurveTess.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\BasicTessTri.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\BasicTessQuad.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\BasicTessIsoline.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tessellation\PatchTerrain.hpp">
+      <Filter>Source Files\Tessellation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleSystemCPU1.hpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleSystemCPU2.hpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleSystemGPU.hpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BasicParticleGPU.hpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RandomEngine.hpp">
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProceduralTexture.hpp">
+      <Filter>Source Files\ProceduralTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIBaseMesh.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GrassPatches.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Skybox.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="shaders\basic_shader.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\basic_shader.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\basic_texture.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\basic_texture.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\mesh_phong.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\mesh_phong.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\point_cloud.gs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\point_cloud.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\point_cloud.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\week3.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\week3.gs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\week3.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\grass.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\grass.gs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\grass.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\terrain.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\terrain.gs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\terrain.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\terrain_wireframe.gs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\terrain_wireframe.fs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\terrain_wireframe.vs.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\basic_tess.fs.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\basic_tess.vs.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\basic_tess_tri.tcs.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\basic_tess_tri.tes.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\terrain.fs.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\terrain.tcs.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\terrain.tes.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Tessellation\terrain.vs.txt">
+      <Filter>shaders\Tessellation</Filter>
+    </Text>
+    <Text Include="shaders\Particles\basic_particle2.fs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\basic_particle2.gs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\basic_particle2.vs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\gpu_particle_draw.fs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\gpu_particle_draw.gs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\gpu_particle_draw.vs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\gpu_particle_update.fs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\gpu_particle_update.gs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Particles\gpu_particle_update.vs.txt">
+      <Filter>shaders\Particles</Filter>
+    </Text>
+    <Text Include="shaders\Compute\perlin_noise.cs.txt">
+      <Filter>shaders\ProceduralTexture</Filter>
+    </Text>
+    <Text Include="shaders\Instancing\base_mesh_inst.fs.txt">
+      <Filter>shaders\Instancing</Filter>
+    </Text>
+    <Text Include="shaders\Instancing\base_mesh_inst.vs.txt">
+      <Filter>shaders\Instancing</Filter>
+    </Text>
+    <Text Include="shaders\Skybox\skybox.fs.txt">
+      <Filter>shaders\Skybox</Filter>
+    </Text>
+    <Text Include="shaders\Skybox\skybox.vs.txt">
+      <Filter>shaders\Skybox</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

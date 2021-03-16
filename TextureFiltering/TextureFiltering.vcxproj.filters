@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Foundation">
+      <UniqueIdentifier>{f5ff69f9-e455-44d8-b443-03a60fbafbfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{feda0407-9283-4798-b624-076725f3f5d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Foundation\Camera Model">
+      <UniqueIdentifier>{f8b577c9-9382-42fb-b21e-aecb4dd5a3da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TextureFiltering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArcballCamera.cpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ViewFrustum.cpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUClock.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader_setup.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture_loader.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIMesh.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIScene.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrincipleAxesModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexturedQuadModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PointExtrudeModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUFont.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ArcballCamera.hpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ViewFrustum.hpp">
+      <Filter>Source Files\Foundation\Camera Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUClock.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shader_setup.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\texture_loader.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIMesh.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIScene.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrincipleAxesModel.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexturedQuadModel.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PointExtrudeModel.hpp">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUFont.hpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

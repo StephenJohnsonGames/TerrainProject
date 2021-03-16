@@ -1,0 +1,35 @@
+#version 460
+
+layout (triangles, fractional_even_spacing, ccw) in;
+
+uniform mat4 mvpMatrix;
+
+in ControlPoint {
+
+	vec4 colour;
+	vec2 texCoord;
+
+} inControlPoint[];
+
+out TessVertex {
+
+	vec4 colour;
+	vec2 texCoord;
+
+} outputVertex;
+
+void main(void) {
+
+	float a = gl_TessCoord[0];
+	float b = gl_TessCoord[1];
+	float c = gl_TessCoord[2];
+
+	outputVertex.colour = inControlPoint[0].colour * a + inControlPoint[1].colour * b + inControlPoint[2].colour * c;
+
+	outputVertex.texCoord = inControlPoint[0].texCoord * a + inControlPoint[1].texCoord * b + inControlPoint[2].texCoord * c;
+
+	vec4 pos = gl_in[0].gl_Position * a + gl_in[1].gl_Position * b + gl_in[2].gl_Position * c;
+
+	gl_Position = mvpMatrix * pos;
+	
+}	

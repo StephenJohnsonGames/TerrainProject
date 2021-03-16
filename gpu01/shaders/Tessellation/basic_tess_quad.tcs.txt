@@ -1,0 +1,40 @@
+#version 460
+
+layout (vertices = 4) out;
+
+in ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} inControlPoint[]; // Let GL implicitly define size from above layout statement
+
+out ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} outControlPoint[];
+
+void main() {
+
+  int i = gl_InvocationID;
+  
+  // Pass-through colour and textue coords
+  // Note: Can index input array with i but need to use gl_InvocationID as index to output arrays
+  outControlPoint[gl_InvocationID].colour = inControlPoint[i].colour;
+  outControlPoint[gl_InvocationID].texCoord = inControlPoint[i].texCoord;
+  
+  // Pass-through position
+  gl_out[gl_InvocationID].gl_Position = gl_in[i].gl_Position;
+  
+  
+  // Set tessellation factors (for Quad)
+  gl_TessLevelOuter[0] = 5;
+  gl_TessLevelOuter[1] = 3.5;
+  gl_TessLevelOuter[2] = 8;
+  gl_TessLevelOuter[3] = 8;
+
+  gl_TessLevelInner[0] = 4;
+  gl_TessLevelInner[1] = 4;
+}

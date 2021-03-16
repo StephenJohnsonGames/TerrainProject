@@ -1,0 +1,143 @@
+#version 460
+
+
+// We'll do coordinate transforms for each tessellated vertex here
+uniform mat4 mvpMatrix;
+
+
+layout (quads, equal_spacing, ccw) in;
+
+
+in ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} ip[]; // Array of control points from Control Shader
+
+out TessVertex {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} outputVertex; // Singular point passed as part of triangle primitives to GS (if present) or rasteriser
+
+
+void main() {
+
+	// Cubic Bezier surface coefficient (basis) matrices
+	mat4 M = mat4(
+
+		1.0, 0.0, 0.0, 0.0,
+		-3.0, 3.0, 0.0, 0.0,
+		3.0, -6.0, 3.0, 0.0,
+		-1.0, 3.0, -3.0, 1.0
+	);
+
+	// N = transpose of M
+	mat4 N = mat4(
+		1.0, -3.0, 3.0, -1.0,
+		0.0, 3.0, -6.0, 3.0,
+		0.0, 0.0, 3.0, -3.0,
+		0.0, 0.0, 0.0, 1.0
+	);
+
+	mat4 Px = mat4(
+
+		gl_in[0].gl_Position.x,	gl_in[4].gl_Position.x,	gl_in[8].gl_Position.x,	gl_in[12].gl_Position.x,
+		gl_in[1].gl_Position.x,	gl_in[5].gl_Position.x,	gl_in[9].gl_Position.x,	gl_in[13].gl_Position.x,
+		gl_in[2].gl_Position.x,	gl_in[6].gl_Position.x,	gl_in[10].gl_Position.x, gl_in[14].gl_Position.x,
+		gl_in[3].gl_Position.x,	gl_in[7].gl_Position.x,	gl_in[11].gl_Position.x, gl_in[15].gl_Position.x
+	);
+
+	mat4 Py = mat4(
+
+		gl_in[0].gl_Position.y,	gl_in[4].gl_Position.y,	gl_in[8].gl_Position.y,	gl_in[12].gl_Position.y,
+		gl_in[1].gl_Position.y,	gl_in[5].gl_Position.y,	gl_in[9].gl_Position.y,	gl_in[13].gl_Position.y,
+		gl_in[2].gl_Position.y,	gl_in[6].gl_Position.y,	gl_in[10].gl_Position.y, gl_in[14].gl_Position.y,
+		gl_in[3].gl_Position.y,	gl_in[7].gl_Position.y,	gl_in[11].gl_Position.y, gl_in[15].gl_Position.y
+	);
+
+	mat4 Pz = mat4(
+
+		gl_in[0].gl_Position.z,	gl_in[4].gl_Position.z,	gl_in[8].gl_Position.z,	gl_in[12].gl_Position.z,
+		gl_in[1].gl_Position.z,	gl_in[5].gl_Position.z,	gl_in[9].gl_Position.z,	gl_in[13].gl_Position.z,
+		gl_in[2].gl_Position.z,	gl_in[6].gl_Position.z,	gl_in[10].gl_Position.z, gl_in[14].gl_Position.z,
+		gl_in[3].gl_Position.z,	gl_in[7].gl_Position.z,	gl_in[11].gl_Position.z, gl_in[15].gl_Position.z
+	);
+
+	mat4 Cr = mat4(
+
+		ip[0].colour.r, ip[4].colour.r, ip[8].colour.r,	ip[12].colour.r,
+		ip[1].colour.r, ip[5].colour.r, ip[9].colour.r,	ip[13].colour.r,
+		ip[2].colour.r, ip[6].colour.r, ip[10].colour.r, ip[14].colour.r,
+		ip[3].colour.r, ip[7].colour.r, ip[11].colour.r, ip[15].colour.r
+	);
+
+	mat4 Cg = mat4(
+
+		ip[0].colour.g, ip[4].colour.g, ip[8].colour.g,	ip[12].colour.g,
+		ip[1].colour.g, ip[5].colour.g, ip[9].colour.g,	ip[13].colour.g,
+		ip[2].colour.g, ip[6].colour.g, ip[10].colour.g, ip[14].colour.g,
+		ip[3].colour.g, ip[7].colour.g, ip[11].colour.g, ip[15].colour.g
+	);
+
+	mat4 Cb = mat4(
+
+		ip[0].colour.b, ip[4].colour.b, ip[8].colour.b,	ip[12].colour.b,
+		ip[1].colour.b, ip[5].colour.b, ip[9].colour.b,	ip[13].colour.b,
+		ip[2].colour.b, ip[6].colour.b, ip[10].colour.b, ip[14].colour.b,
+		ip[3].colour.b, ip[7].colour.b, ip[11].colour.b, ip[15].colour.b
+	);
+
+	mat4 Ca = mat4(
+
+		ip[0].colour.a, ip[4].colour.a, ip[8].colour.a,	ip[12].colour.a,
+		ip[1].colour.a, ip[5].colour.a, ip[9].colour.a,	ip[13].colour.a,
+		ip[2].colour.a, ip[6].colour.a, ip[10].colour.a, ip[14].colour.a,
+		ip[3].colour.a, ip[7].colour.a, ip[11].colour.a, ip[15].colour.a
+	);
+
+	mat4 Tu = mat4(
+
+		ip[0].texCoord.x, ip[4].texCoord.x, ip[8].texCoord.x,	ip[12].texCoord.x,
+		ip[1].texCoord.x, ip[5].texCoord.x, ip[9].texCoord.x,	ip[13].texCoord.x,
+		ip[2].texCoord.x, ip[6].texCoord.x, ip[10].texCoord.x, ip[14].texCoord.x,
+		ip[3].texCoord.x, ip[7].texCoord.x, ip[11].texCoord.x, ip[15].texCoord.x
+	);
+
+	mat4 Tv = mat4(
+
+		ip[0].texCoord.y, ip[4].texCoord.y, ip[8].texCoord.y,	ip[12].texCoord.y,
+		ip[1].texCoord.y, ip[5].texCoord.y, ip[9].texCoord.y,	ip[13].texCoord.y,
+		ip[2].texCoord.y, ip[6].texCoord.y, ip[10].texCoord.y, ip[14].texCoord.y,
+		ip[3].texCoord.y, ip[7].texCoord.y, ip[11].texCoord.y, ip[15].texCoord.y
+	);
+
+	// Get domain coords
+	float s = gl_TessCoord.x;
+	float t = gl_TessCoord.y;
+
+	vec4 S = vec4(1.0f, s, s*s, s*s*s);
+	vec4 T = vec4(1.0f, t, t*t, t*t*t);
+
+	float x = dot(T * N * Px * M, S);
+	float y = dot(T * N * Py * M, S);
+	float z = dot(T * N * Pz * M, S);
+	
+	float r = dot(T * N * Cr * M, S);
+	float g = dot(T * N * Cg * M, S);
+	float b = dot(T * N * Cb * M, S);
+	float a = dot(T * N * Ca * M, S);
+
+	float u = dot(T * N * Tu * M, S);
+	float v = dot(T * N * Tv * M, S);
+
+	// Interpolate colour
+	outputVertex.colour = vec4(r, g, b, a);
+	
+	// Interpolate texture coords
+	outputVertex.texCoord = vec2(u, v); 
+
+	gl_Position = mvpMatrix * vec4(x, y, z, 1.0f);
+}

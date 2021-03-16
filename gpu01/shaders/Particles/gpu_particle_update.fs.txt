@@ -1,0 +1,19 @@
+#version 460
+
+in GSOutput {
+	
+	vec3 pos;
+	vec3 velocity;
+	float age;
+	uint isaGenerator;
+
+} inputFragment;
+
+
+layout (location=0) out vec4 fragColour;
+
+
+void main(void) {
+
+  fragColour = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+}

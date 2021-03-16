@@ -1,0 +1,38 @@
+#version 460
+
+layout (vertices = 16) out;
+
+in ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} inControlPoint[];
+
+out ControlPoint {
+
+  vec4    colour;
+  vec2    texCoord;
+  
+} outControlPoint[];
+
+void main() {
+
+  int i = gl_InvocationID;
+  
+  // Pass-through colour and textue coords
+  outControlPoint[gl_InvocationID].colour = inControlPoint[i].colour;
+  outControlPoint[gl_InvocationID].texCoord = inControlPoint[i].texCoord;
+  
+  // Pass-through position
+  gl_out[gl_InvocationID].gl_Position = gl_in[i].gl_Position;
+  
+  // Set tessellation factors
+  gl_TessLevelOuter[0] = 20;
+  gl_TessLevelOuter[1] = 20;
+  gl_TessLevelOuter[2] = 20;
+  gl_TessLevelOuter[3] = 20;
+
+  gl_TessLevelInner[0] = 20;
+  gl_TessLevelInner[1] = 20;
+}

@@ -1,0 +1,92 @@
+#version 460
+
+uniform float maxAge;
+uniform float deltaTime;
+uniform float generateAge;
+uniform int rndBaseIndex;
+
+layout (points) in;
+layout (points, max_vertices = 2) out;
+
+layout (std430, binding = 0) buffer random_array {
+
+	float rnd[1024];
+};
+
+
+in Particle {
+
+	vec3 pos;
+	vec3 velocity;
+	float age;
+	int isaGenerator;
+
+} inputVertex[];
+
+
+layout (xfb_buffer=0, xfb_offset=0, xfb_stride=48) out GSOutput {
+	
+	layout (xfb_offset = 0) vec3 pos;
+	layout (xfb_offset = 16) vec3 velocity;
+	layout (xfb_offset = 28) float age;
+	layout (xfb_offset = 32) int isaGenerator;
+
+} outputVertex;
+
+void main(void) {
+
+	float age = inputVertex[0].age + deltaTime;
+
+	if (inputVertex[0].isaGenerator == 1) {
+
+		if (age >= generateAge) {
+
+			// Output generator with age reset
+			outputVertex.pos = inputVertex[0].pos;
+			outputVertex.velocity = inputVertex[0].velocity;
+			outputVertex.age = 0.0f;
+			outputVertex.isaGenerator = 1;
+			EmitStreamVertex(0);
+
+			// Output new particle
+			outputVertex.pos = inputVertex[0].pos;
+
+			//float vx = mix(-1.0f, 1.0f, rnd[rndBaseIndex % 1024]);
+			//float vy = mix(-1.0f, 1.0f, rnd[(rndBaseIndex + 1) % 1024]);
+			//float vz = mix(-1.0f, 1.0f, rnd[(rndBaseIndex + 2) % 1024]);
+
+			float vx = -0.2f;
+			float vy = -1.0f;
+			float vz = -0.2f;
+
+			outputVertex.velocity = vec3(vx, vy, vz);
+			
+			outputVertex.age = 0.0f;
+			outputVertex.isaGenerator = 0;
+			EmitStreamVertex(0);
+		}
+		else {
+
+			// Output latest generator state
+
+			outputVertex.pos = inputVertex[0].pos;
+			outputVertex.velocity = inputVertex[0].velocity;
+			outputVertex.age = age;
+			outputVertex.isaGenerator = 1;
+			EmitStreamVertex(0);
+		}
+	}
+	else {
+
+		// Ordinary particle
+
+		if (age < maxAge) {
+
+			outputVertex.pos = inputVertex[0].pos + inputVertex[0].velocity * deltaTime;
+			outputVertex.velocity = inputVertex[0].velocity;
+			outputVertex.age = age;
+			outputVertex.isaGenerator = 0;
+			EmitStreamVertex(0);
+		}
+	}
+}

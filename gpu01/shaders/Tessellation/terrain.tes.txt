@@ -1,0 +1,45 @@
+#version 460
+
+layout (triangles, equal_spacing, ccw) in;
+
+uniform mat4 projMatrix;
+
+in ControlPoint {
+
+	vec4 colour;
+	float linearDepth;
+	vec3 normals;
+	vec2 texCoord;
+	vec4 worldPos;
+
+} inControlPoint[];
+
+out TessVertex {
+
+	vec4 colour;
+	float linearDepth;
+	vec3 normals;
+	vec2 texCoord;
+	vec4 worldPos;
+
+} outputVertex;
+
+void main(void) {
+
+	//get barycentric coords
+
+	float a = gl_TessCoord.x;
+	float b = gl_TessCoord.y;
+	float c = gl_TessCoord.z;
+
+	outputVertex.colour = inControlPoint[0].colour * a + inControlPoint[1].colour * b + inControlPoint[2].colour * c;
+	outputVertex.linearDepth = inControlPoint[0].linearDepth * a + inControlPoint[1].linearDepth * b + inControlPoint[2].linearDepth * c;
+	outputVertex.texCoord = inControlPoint[0].texCoord * a + inControlPoint[1].texCoord * b + inControlPoint[2].texCoord * c;
+	outputVertex.worldPos = inControlPoint[0].worldPos * a + inControlPoint[1].worldPos * b + inControlPoint[2].worldPos * c;
+	outputVertex.normals = inControlPoint[0].normals * a + inControlPoint[1].normals * b + inControlPoint[2].normals * c;
+
+	vec3 pos = gl_in[0].gl_Position.xyz * a + gl_in[1].gl_Position.xyz * b + gl_in[2].gl_Position.xyz * c;
+
+	gl_Position = projMatrix * vec4(pos, 1.0f);
+	
+}	

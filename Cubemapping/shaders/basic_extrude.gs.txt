@@ -1,0 +1,39 @@
+#version 460
+
+uniform mat4 mvpMatrix;
+
+layout (points) in;
+layout (line_strip, max_vertices = 3) out;
+
+in GSPacket {
+
+	vec4 colour;
+
+} inputVertex[];  // VS output vertex recieved as input array (since points here size of array if 1 anyway!)
+
+out SimplePacket {
+
+	vec4 colour;
+
+} gs_out;
+
+void main(void) {
+
+	vec4 P = gl_in[0].gl_Position;
+	
+	gl_Position = mvpMatrix * P; // base
+	gs_out.colour = inputVertex[0].colour;
+	EmitVertex();
+
+	gl_Position = mvpMatrix * vec4(P.x + 0.1f, P.y + 0.5f, P.z, P.w);
+	gs_out.colour = inputVertex[0].colour * 0.5f;
+	EmitVertex();
+
+	gl_Position = mvpMatrix * vec4(P.x + 0.3f, P.y + 1.0f, P.z, P.w);
+	gs_out.colour = inputVertex[0].colour * 0.25f;
+	EmitVertex();
+
+	EndPrimitive(); // optional here since just single line_strip primitive produced
+}
+
+

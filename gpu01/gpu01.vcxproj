@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{3CC69750-1899-43DB-AF0E-3D76C5CE65C9}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>gpu01</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)Libs\Assimp\include;$(SolutionDir)Libs\glew-2.1.0\include\GL;$(SolutionDir)Libs\freeglut\include\GL;$(SolutionDir)Libs\FreeImage\Dist\x64;$(SolutionDir)Libs\FreeImage\Wrapper\FreeImagePlus\dist\x64;$(SolutionDir)Libs;$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libs\Assimp\lib\x64;$(SolutionDir)Libs\freeglut\lib\x64;$(SolutionDir)Libs\glew-2.1.0\lib\Release\x64;$(SolutionDir)Libs\FreeImage\Dist\x64;$(SolutionDir)Libs\FreeImage\Wrapper\FreeImagePlus\dist\x64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;FreeImage.lib;FreeImagePlus.lib;assimp-vc140-mt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)Libs\freeglut\bin\x64\freeglut.dll" "$(ProjectDir)freeglut.dll"
+copy "$(SolutionDir)Libs\glew-2.1.0\bin\Release\x64\glew32.dll" "$(ProjectDir)glew32.dll"
+copy "$(SolutionDir)Libs\FreeImage\Dist\x64\FreeImage.dll" "$(ProjectDir)FreeImage.dll"
+copy "$(SolutionDir)Libs\FreeImage\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.dll" "$(ProjectDir)FreeImagePlus.dll"
+copy "$(SolutionDir)Libs\Assimp\bin\x64\assimp-vc140-mt.dll" "$(ProjectDir)assimp-vc140-mt.dll"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="gpu01.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\AIBaseMesh.cpp" />
+    <ClCompile Include="src\AIScene.cpp" />
+    <ClCompile Include="src\ArcballCamera.cpp" />
+    <ClCompile Include="src\AIMesh.cpp" />
+    <ClCompile Include="src\BasicTerrain.cpp" />
+    <ClCompile Include="src\BasicTessTriangle.cpp" />
+    <ClCompile Include="src\GrassField.cpp" />
+    <ClCompile Include="src\GUClock.cpp" />
+    <ClCompile Include="src\ParticleSystemCPU1.cpp" />
+    <ClCompile Include="src\ParticleSystemCPU2.cpp" />
+    <ClCompile Include="src\ParticleSystemGPU.cpp" />
+    <ClCompile Include="src\PerlinNoise.cpp" />
+    <ClCompile Include="src\PointExtrudeModel.cpp" />
+    <ClCompile Include="src\PrincipleAxesModel.cpp" />
+    <ClCompile Include="src\ProceduralTexture.cpp" />
+    <ClCompile Include="src\shader_setup.cpp" />
+    <ClCompile Include="src\Skybox.cpp" />
+    <ClCompile Include="src\StringUtility.cpp" />
+    <ClCompile Include="src\Tessellation\BasicTessIsoline.cpp" />
+    <ClCompile Include="src\Tessellation\BasicTessQuad.cpp" />
+    <ClCompile Include="src\Tessellation\BasicTessTri.cpp" />
+    <ClCompile Include="src\Tessellation\BezierCurveTess.cpp" />
+    <ClCompile Include="src\Tessellation\BezierSurface.cpp" />
+    <ClCompile Include="src\Tessellation\BSplineSurface.cpp" />
+    <ClCompile Include="src\Tessellation\CatmulRomSpline.cpp" />
+    <ClCompile Include="src\Tessellation\PatchTerrain.cpp" />
+    <ClCompile Include="src\TexturedQuadModel.cpp" />
+    <ClCompile Include="src\texture_loader.cpp" />
+    <ClCompile Include="src\GrassPatches.cpp" />
+    <ClCompile Include="src\ViewFrustum.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="src\AIBaseMesh.hpp" />
+    <ClInclude Include="src\AIScene.hpp" />
+    <ClInclude Include="src\ArcballCamera.hpp" />
+    <ClInclude Include="src\AIMesh.hpp" />
+    <ClInclude Include="src\BasicParticleGPU.hpp" />
+    <ClInclude Include="src\BasicTerrain.hpp" />
+    <ClInclude Include="src\BasicTessTriangle.hpp" />
+    <ClInclude Include="src\GLProgramObject.hpp" />
+    <ClInclude Include="src\GLShaderFactory.hpp" />
+    <ClInclude Include="src\GLShaderStage.hpp" />
+    <ClInclude Include="src\GrassField.hpp" />
+    <ClInclude Include="src\GUClock.hpp" />
+    <ClInclude Include="src\NoiseInterface.hpp" />
+    <ClInclude Include="src\ParticleSystemCPU1.hpp" />
+    <ClInclude Include="src\ParticleSystemCPU2.hpp" />
+    <ClInclude Include="src\ParticleSystemGPU.hpp" />
+    <ClInclude Include="src\PerlinNoise.hpp" />
+    <ClInclude Include="src\PointExtrudeModel.hpp" />
+    <ClInclude Include="src\PrincipleAxesModel.hpp" />
+    <ClInclude Include="src\math.hpp" />
+    <ClInclude Include="src\ProceduralTexture.hpp" />
+    <ClInclude Include="src\RandomEngine.hpp" />
+    <ClInclude Include="src\shader_setup.hpp" />
+    <ClInclude Include="src\Skybox.hpp" />
+    <ClInclude Include="src\StringUtility.hpp" />
+    <ClInclude Include="src\Tessellation\BasicTessIsoline.hpp" />
+    <ClInclude Include="src\Tessellation\BasicTessQuad.hpp" />
+    <ClInclude Include="src\Tessellation\BasicTessTri.hpp" />
+    <ClInclude Include="src\Tessellation\BezierCurveTess.hpp" />
+    <ClInclude Include="src\Tessellation\BezierSurface.hpp" />
+    <ClInclude Include="src\Tessellation\BSplineSurface.hpp" />
+    <ClInclude Include="src\Tessellation\CatmulRomSpline.hpp" />
+    <ClInclude Include="src\Tessellation\PatchTerrain.hpp" />
+    <ClInclude Include="src\TexturedQuadModel.hpp" />
+    <ClInclude Include="src\texture_loader.hpp" />
+    <ClInclude Include="src\GrassPatches.hpp" />
+    <ClInclude Include="src\ViewFrustum.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="shaders\basic_shader.fs.txt" />
+    <Text Include="shaders\basic_shader.vs.txt" />
+    <Text Include="shaders\basic_texture.fs.txt" />
+    <Text Include="shaders\basic_texture.vs.txt" />
+    <Text Include="shaders\Compute\perlin_noise.cs.txt" />
+    <Text Include="shaders\grass.fs.txt" />
+    <Text Include="shaders\grass.gs.txt" />
+    <Text Include="shaders\grass.vs.txt" />
+    <Text Include="shaders\Instancing\base_mesh_inst.fs.txt" />
+    <Text Include="shaders\Instancing\base_mesh_inst.vs.txt" />
+    <Text Include="shaders\mesh_phong.fs.txt" />
+    <Text Include="shaders\mesh_phong.vs.txt" />
+    <Text Include="shaders\Particles\basic_particle2.fs.txt" />
+    <Text Include="shaders\Particles\basic_particle2.gs.txt" />
+    <Text Include="shaders\Particles\basic_particle2.vs.txt" />
+    <Text Include="shaders\Particles\gpu_particle_draw.fs.txt" />
+    <Text Include="shaders\Particles\gpu_particle_draw.gs.txt" />
+    <Text Include="shaders\Particles\gpu_particle_draw.vs.txt" />
+    <Text Include="shaders\Particles\gpu_particle_update.fs.txt" />
+    <Text Include="shaders\Particles\gpu_particle_update.gs.txt" />
+    <Text Include="shaders\Particles\gpu_particle_update.vs.txt" />
+    <Text Include="shaders\point_cloud.fs.txt" />
+    <Text Include="shaders\point_cloud.gs.txt" />
+    <Text Include="shaders\point_cloud.vs.txt" />
+    <Text Include="shaders\Skybox\skybox.fs.txt" />
+    <Text Include="shaders\Skybox\skybox.vs.txt" />
+    <Text Include="shaders\terrain.fs.txt" />
+    <Text Include="shaders\terrain.gs.txt" />
+    <Text Include="shaders\terrain.vs.txt" />
+    <Text Include="shaders\terrain_wireframe.fs.txt" />
+    <Text Include="shaders\terrain_wireframe.gs.txt" />
+    <Text Include="shaders\terrain_wireframe.vs.txt" />
+    <Text Include="shaders\Tessellation\basic_tess.fs.txt" />
+    <Text Include="shaders\Tessellation\basic_tess.vs.txt" />
+    <Text Include="shaders\Tessellation\basic_tess_tri.tcs.txt" />
+    <Text Include="shaders\Tessellation\basic_tess_tri.tes.txt" />
+    <Text Include="shaders\Tessellation\terrain.fs.txt" />
+    <Text Include="shaders\Tessellation\terrain.tcs.txt" />
+    <Text Include="shaders\Tessellation\terrain.tes.txt" />
+    <Text Include="shaders\Tessellation\terrain.vs.txt" />
+    <Text Include="shaders\week3.vs.txt" />
+    <Text Include="shaders\week3.fs.txt" />
+    <Text Include="shaders\week3.gs.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

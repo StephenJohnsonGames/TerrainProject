@@ -5,3 +5,5 @@ Terrain Programming README
 - Added complexity over previous OpenGL Project by introducing tessellation and geometry shader stages and using compute shaders for Perlin Noise.
 
 - Required libraries and solution included for ease (req Git LFS & Visual Studio). TODO - Convert to CMake project. 
+
+- Additional tests for Texture filtering and Cubemapping are also included in the project.
